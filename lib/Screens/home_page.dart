@@ -91,7 +91,20 @@ class _BankingAppState extends State<BankingApp> {
                 ],
               ),
 
+              SizedBox(height: 140),
 
+              ElevatedButton(
+                onPressed: () {},
+
+                child: const Text(
+                  "Let's Start",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              )
             ],
           ),
         ),
