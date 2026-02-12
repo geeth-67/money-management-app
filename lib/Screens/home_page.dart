@@ -34,7 +34,32 @@ class _BankingAppState extends State<BankingApp> {
                   ),
                 ),
               ),
-            ],
+
+              SizedBox(height: 10),
+
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Save your money",style: TextStyle(
+                          fontSize: 37,
+                          fontWeight: FontWeight.bold,color: Color(0xff565761)),),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("with expense Tracker", style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w600, color: Color(0xff565761)
+                      ),)
+                    ],
+                  )
+                ],
+              ),
+
+
           ),
         ),
       ),
