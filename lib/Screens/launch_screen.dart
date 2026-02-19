@@ -1,28 +1,34 @@
+import 'package:banking_app/Screens/home_screen.dart';
+import 'package:banking_app/configs/size_config.dart';
 import 'package:flutter/material.dart';
 
 
-class BankingApp extends StatefulWidget {
-  const BankingApp({super.key});
+class LaunchScreen extends StatefulWidget {
+  const LaunchScreen({super.key});
 
   @override
-  State<BankingApp> createState() => _BankingAppState();
+  State<LaunchScreen> createState() => _LaunchScreenState();
 }
 
-class _BankingAppState extends State<BankingApp> {
+class _LaunchScreenState extends State<LaunchScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    SizeConfig.init(context);
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
         child: Container(
-          width: 330,
+          width: SizeConfig.blockHeight * 100,
           padding: const EdgeInsets.only(top: 110),
           child: Column(
             children: [
               Container(
-                height: 400,
-                width: 400,
+                height: SizeConfig.blockHeight * 50,
+                width: SizeConfig.blockWidth * 75,
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color(0xFFf3eefb),
@@ -34,6 +40,16 @@ class _BankingAppState extends State<BankingApp> {
                   ),
                 ),
               ),
+
+              // Container(
+              //   child: Image.network('https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
+              //   width: 100,
+              //     loadingBuilder: (context, child , loadingProgress) {
+              //     if (loadingProgress == null) return child;
+              //     return Center(child: const CircularProgressIndicator(),);      //loading to open web images
+              //     },
+              //   ),
+              // ),
 
               SizedBox(height: 10),
 
@@ -91,21 +107,31 @@ class _BankingAppState extends State<BankingApp> {
                 ],
               ),
 
-              SizedBox(height: 140),
+              Spacer(),
 
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 100),
-                  backgroundColor: const Color(0xFFa061e2),
-                  elevation: 5,
-                ),
-                child: const Text(
-                  "Let's Start",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+              Container(
+                margin: EdgeInsets.only(bottom: SizeConfig.blockWidth * 6),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomeScreen(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 100),
+                    backgroundColor: const Color(0xFFa061e2),
+                    elevation: 5,
+                  ),
+                  child: const Text(
+                    "Let's Start",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               )
