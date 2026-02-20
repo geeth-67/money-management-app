@@ -140,7 +140,39 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
 
-
+                          Row(
+                            children: const [
+                              CircleAvatar(
+                                radius: 15,
+                                backgroundColor: Colors.pink,
+                                child: Icon(
+                                  Icons.arrow_upward,
+                                  size: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Expense",
+                                    style: TextStyle(
+                                      color: Colors.white60,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  Text(
+                                    "950",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ],
@@ -148,7 +180,84 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
+              SizedBox(height: SizeConfig.blockWidth * 6),
 
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    "Recent Transactions",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "See All",
+                    style: TextStyle(
+                      color: Color(0xFF6E2BC6),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 24,
+                    ),
+                  ),
+                ],
+              ),
+
+              SizedBox(height: SizeConfig.blockWidth * 7),
+
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(colors: [
+                    Color(0xFFffffff),
+                    Color(0xFF9a9a99)
+                  ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      children: [
+                        Image.asset(
+                          "assets/icons/cart.png",
+                          width: 28,
+                        )
+                      ],
+                    ),
+
+                    Row(
+                      children: [
+                        Image.asset(
+                          "assets/icons/paypal.png",
+                          width: 28,
+                        )
+                      ],
+                    ),
+
+                    Row(
+                      children: [
+                        Image.asset(
+                          "assets/icons/uber.png",
+                          width: 28,
+                        )
+                      ],
+                    ),
+
+                    Row(
+                      children: [
+                        Image.asset(
+                          "assets/icons/bank.png",
+                          width: 28,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),
