@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
-import 'Screens/home_page.dart';
+import 'Screens/launch_screen.dart';
+import 'configs/size_config.dart';
 
 
 void main() {
-  runApp(const bankingApp());
+  runApp(const moneyManagemenetApp());
 }
 
-class bankingApp extends StatelessWidget {
-  const bankingApp({super.key});
+class moneyManagemenetApp extends StatelessWidget {
+  const moneyManagemenetApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context ,child) {
+        SizeConfig.init(context);
+        return child !;
+      },
       debugShowCheckedModeBanner: false,
 
-      home: const BankingApp(),
+      home: const LaunchScreen(),
     );
   }
 }
