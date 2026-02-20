@@ -102,6 +102,52 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       SizedBox(height: SizeConfig.blockWidth * 11),
 
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+
+                          Row(
+                            children: const [
+                              CircleAvatar(
+                                radius: 15,
+                                backgroundColor: Colors.green,
+                                child: Icon(
+                                  Icons.arrow_downward,
+                                  size: 16,
+                                  color: Colors.white60,
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Income",
+                                    style: TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 15
+                                    ),
+                                  ),
+                                  Text(
+                                    "2,500",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
+
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
 
             ],
           ),
