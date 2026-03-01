@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     TransactionModel(iconName: 'icon', title: 'Groceries', date: DateTime(2026, 02, 22), amount: 120.50, isExpense: true),
     TransactionModel(iconName: 'icon', title: 'Salary', date: DateTime(2026, 02, 20), amount: 2500.00, isExpense: false),
     TransactionModel(iconName: 'icon', title: 'Uber', date: DateTime(2026, 02, 19), amount: 35.75, isExpense: true),
-    TransactionModel(iconName: 'icon', title: 'Restaurant', date: DateTime(2026, 02, 18), amount: 82.40, isExpense: true),
+    TransactionModel(iconName: 'icon', title: 'Restaurant', date: DateTime(2026, 02, 18), amount: 82.40, isExpense: false),
     TransactionModel(iconName: 'icon', title: 'Online Store', date: DateTime(2026, 02, 17), amount: 150.00, isExpense: true),
     TransactionModel(iconName: 'icon', title: 'Bank Transfer', date: DateTime(2026, 02, 16), amount: 100.00, isExpense: true),
     TransactionModel(iconName: 'icon', title: 'Freelance Project', date: DateTime(2026, 02, 15), amount: 600.00, isExpense: false),
