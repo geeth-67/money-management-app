@@ -1,5 +1,6 @@
 import 'package:banking_app/Data/Model/transaction_model.dart';
-import 'package:banking_app/Screens/profile_screen.dart';
+import 'package:banking_app/Screens/addTransaction.dart';
+import 'package:banking_app/Screens/transaction.dart';
 import 'package:banking_app/Widgets/transaction_widget.dart';
 import 'package:banking_app/configs/size_config.dart';
 import 'package:flutter/material.dart';
@@ -44,9 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.only(right: 60),
                     child: TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
+                      onPressed: () {},
                       child: const Icon(
                         Icons.chevron_left,
                         size: 50,
@@ -67,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: TextButton(
                       onPressed: () {
                         Navigator.push(context,  MaterialPageRoute(
-                          builder: (context) => const ProfileScreen(),
+                          builder: (context) => const AddTransactionScreen(),
                         ),
                         );
                       },
@@ -205,8 +204,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     "Recent Transactions",
                     style: TextStyle(
                       color: Colors.black,
@@ -214,21 +213,30 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  ElevatedButton(onPressed: (){
+                    Navigator.pushAndRemoveUntil(context,  MaterialPageRoute(
+                      builder: (
+                          context) => const Transaction()),
+                            (route) {return route.settings.name == null &&
+                          route is MaterialPageRoute &&
+                          route.builder(context) is Transaction;
+                        }
+                    );
+                  }, child: const Text(
                     "See All",
                     style: TextStyle(
                       color: Color(0xFF6E2BC6),
                       fontWeight: FontWeight.w500,
                       fontSize: 24,
                     ),
-                  ),
+                  ))
                 ],
               ),
 
               SizedBox(height: SizeConfig.blockWidth * 7),
 
               Container(
-                height: SizeConfig.blockHeight * 42 ,
+                height: SizeConfig.blockHeight * 35 ,
                 margin: EdgeInsets.symmetric(horizontal: SizeConfig.blockWidth * 1),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
@@ -246,7 +254,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                   ),
                 ),
-              )
+              ),
+              FloatingActionButton(onPressed: (){
+                Navigator.push(context,  MaterialPageRoute(
+                  builder: (context) => const AddTransactionScreen(),
+                ),
+                );
+              },)
             ],
           ),
         ),
