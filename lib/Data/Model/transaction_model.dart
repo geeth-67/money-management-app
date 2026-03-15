@@ -1,7 +1,4 @@
-
-
-class TransactionModel {
-
+class TransactionModel{
   final String iconName;
   final String title;
   final DateTime date;
@@ -16,4 +13,3 @@ class TransactionModel {
     required this.isExpense
 });
 }
-

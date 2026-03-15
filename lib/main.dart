@@ -1,25 +1,42 @@
+import 'package:banking_app/screens/add_transaction.dart';
+import 'package:banking_app/screens/analytics.dart';
+import 'package:banking_app/screens/home_screen.dart';
+import 'package:banking_app/screens/success_screen.dart';
+import 'package:banking_app/screens/transactions_screen.dart';
 import 'package:flutter/material.dart';
-import 'Screens/launch_screen.dart';
 import 'configs/size_config.dart';
+import 'screens/launch_screen.dart';
+
 
 
 void main() {
-  runApp(const moneyManagemenetApp());
+  runApp(const MyApp());
 }
 
-class moneyManagemenetApp extends StatelessWidget {
-  const moneyManagemenetApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      builder: (context ,child) {
+      initialRoute: '/',
+      routes: {
+        '/' : (context) => LaunchScreen(),
+        '/home' : (context) => HomeScreen(),
+        '/transactions' : (context) => Transactions(),
+        '/transaction-add' : (context) => AddTransaction(),
+        '/transaction-success': (context) => SuccessScreen(),
+        '/analytics' : (context) => Analytics()
+      },
+
+      builder: (context, child){
         SizeConfig.init(context);
-        return child !;
+        return child!;
       },
       debugShowCheckedModeBanner: false,
-
-      home: const LaunchScreen(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
     );
   }
 }
