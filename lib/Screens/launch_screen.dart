@@ -67,8 +67,8 @@ class _LaunchScreenState extends State<LaunchScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("with expense Tracker", style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600, color: Color(0xff565761)
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600, color: Color(0xff565761)
                       ),)
                     ],
                   )
