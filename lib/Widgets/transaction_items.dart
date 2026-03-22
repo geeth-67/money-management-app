@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../configs/size_config.dart';
 
 
@@ -37,7 +36,9 @@ class TransactionItem extends StatelessWidget {
               ),
               child: Icon(icon, size: 24,),
             ),
+
             SizedBox(width: SizeConfig.blockWidth * 4),
+
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,7 +48,9 @@ class TransactionItem extends StatelessWidget {
                   fontSize: SizeConfig.blockWidth * 4,
                   fontWeight: FontWeight.bold
                 ),),
+
                 SizedBox(width: SizeConfig.blockHeight * 1.5),
+
                 Text(date,
                   style: TextStyle(
                       color: Colors.grey.shade600,
@@ -56,7 +59,9 @@ class TransactionItem extends StatelessWidget {
                   ),),
               ],
             ),
+
             Spacer(),
+
             Text(amount,
               style: TextStyle(
                   fontSize: SizeConfig.blockWidth * 4,
@@ -65,9 +70,9 @@ class TransactionItem extends StatelessWidget {
               ),),
           ],
         ),),
-        Divider(
-          thickness: 1,
-        )
+
+        Divider(thickness: 1,)
+
       ],
     );
   }
