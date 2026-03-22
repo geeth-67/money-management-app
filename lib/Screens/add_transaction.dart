@@ -1,9 +1,8 @@
 import 'package:banking_app/screens/transactions_screen.dart';
 import 'package:flutter/material.dart';
-
-
 import '../configs/size_config.dart';
 import '../Data/model/transaction_model.dart';
+
 
 class AddTransaction extends StatefulWidget {
   const AddTransaction({super.key});
@@ -13,6 +12,7 @@ class AddTransaction extends StatefulWidget {
 }
 
 class _AddTransactionState extends State<AddTransaction> {
+
   bool isExpense = true;
   String? selectedCategory = "Shopping";
 
@@ -38,9 +38,9 @@ class _AddTransactionState extends State<AddTransaction> {
                                     builder: (context) => Transactions()));
                           },
                           icon: Icon(Icons.arrow_back_ios)),
-                      SizedBox(
-                        width: SizeConfig.blockWidth * 16,
-                      ),
+
+                      SizedBox(width: SizeConfig.blockWidth * 16,),
+
                       Text(
                         "Add Transaction",
                         style: TextStyle(
@@ -49,7 +49,9 @@ class _AddTransactionState extends State<AddTransaction> {
                       ),
                     ],
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 2),
+
                   Container(
                     padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
@@ -85,6 +87,7 @@ class _AddTransactionState extends State<AddTransaction> {
                             ),
                           ),
                         ),
+
                         Expanded(
                           child: GestureDetector(
                             onTap: () => setState(() => isExpense = false),
@@ -251,7 +254,9 @@ class _AddTransactionState extends State<AddTransaction> {
                       ),
                     ),
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 4),
+
                 ],
               ),
             )
