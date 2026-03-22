@@ -113,7 +113,9 @@ class _AddTransactionState extends State<AddTransaction> {
                       ],
                     ),
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 3),
+
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(vertical: 20),
@@ -132,7 +134,9 @@ class _AddTransactionState extends State<AddTransaction> {
                       ),
                     ),
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 3),
+
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -143,7 +147,9 @@ class _AddTransactionState extends State<AddTransaction> {
                       ),
                     ),
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 2),
+
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                     decoration: BoxDecoration(
@@ -181,14 +187,18 @@ class _AddTransactionState extends State<AddTransaction> {
                       ),
                     ),
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 3),
+
                   TextField(
                     decoration: InputDecoration(
                       hintText: "Note (optional)",
                       border: UnderlineInputBorder(),
                     ),
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 25),
+                  
                   GestureDetector(
                     onTap: () {
                       // Navigator.pushAndRemoveUntil(
