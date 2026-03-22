@@ -1,9 +1,8 @@
 import 'package:banking_app/screens/transactions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
-
 import '../configs/size_config.dart';
+
 
 class InputFields extends StatefulWidget {
   const InputFields({super.key});
@@ -13,6 +12,7 @@ class InputFields extends StatefulWidget {
 }
 
 class _AddTransactionState extends State<InputFields> {
+
   String submission = 'No errors';
   bool showPassword = false;
   final firstNameController = TextEditingController();
@@ -68,10 +68,12 @@ class _AddTransactionState extends State<InputFields> {
                 ],
               ),
             ),
+
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
+
                   Form(
                       key: _formKey,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -107,6 +109,7 @@ class _AddTransactionState extends State<InputFields> {
                               return null;
                             },
                           ),
+
                           TextFormField(
                             controller: lastNameController,
                             decoration: InputDecoration(
@@ -117,6 +120,7 @@ class _AddTransactionState extends State<InputFields> {
                             ),
                             keyboardType: TextInputType.text,
                           ),
+
                           TextFormField(
                             // maxLines: 5,
                             controller: passwordController,
@@ -140,6 +144,7 @@ class _AddTransactionState extends State<InputFields> {
                             //   })
                             // },
                           ),
+
                           TextFormField(
                             controller: amountController,
                             decoration: InputDecoration(
@@ -177,9 +182,9 @@ class _AddTransactionState extends State<InputFields> {
                           ),
                         ],
                       )),
-                  SizedBox(
-                    height: 10,
-                  ),
+
+                  SizedBox(height: 10,),
+
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
