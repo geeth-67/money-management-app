@@ -1,9 +1,8 @@
 import 'package:banking_app/screens/transactions_screen.dart';
 import 'package:flutter/material.dart';
-
-
 import '../configs/size_config.dart';
 import '../Data/model/transaction_model.dart';
+
 
 class AddTransactionDemo extends StatefulWidget {
   const AddTransactionDemo({super.key});
@@ -20,6 +19,7 @@ class _AddTransactionDemoState extends State<AddTransactionDemo> {
     const DropdownMenuItem(value: "", child: Text("Select Category")),
     const DropdownMenuItem(value: "shopping", child: Text("Shopping")),
     const DropdownMenuItem(value: "medicine", child: Text("Medicine")),
+    const DropdownMenuItem(value: "ajith", child: Text("Ajith")),
   ];
 
   final _formKey = GlobalKey<FormState>();
@@ -56,7 +56,9 @@ class _AddTransactionDemoState extends State<AddTransactionDemo> {
                       ),
                     ],
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 2),
+
                   Container(
                     padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
@@ -64,6 +66,7 @@ class _AddTransactionDemoState extends State<AddTransactionDemo> {
                       borderRadius: BorderRadius.circular(30),
                       border: Border.all(color: Colors.grey.shade300, width: 2),
                     ),
+
                     child: Row(
                       children: [
                         Expanded(
@@ -87,6 +90,7 @@ class _AddTransactionDemoState extends State<AddTransactionDemo> {
                             ),
                           ),
                         ),
+
                         Expanded(
                           child: GestureDetector(
                             onTap: () => setState(() => isExpense = false),
@@ -111,7 +115,9 @@ class _AddTransactionDemoState extends State<AddTransactionDemo> {
                       ],
                     ),
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 3),
+
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.symmetric(vertical: 20),
@@ -141,7 +147,9 @@ class _AddTransactionDemoState extends State<AddTransactionDemo> {
                       ),
                     ),
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 2),
+
                   Form(
                     key: _formKey,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -164,14 +172,18 @@ class _AddTransactionDemoState extends State<AddTransactionDemo> {
                       },
                     ),
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 3),
+
                   TextField(
                     decoration: InputDecoration(
                       hintText: "Note (optional)",
                       border: UnderlineInputBorder(),
                     ),
                   ),
+
                   SizedBox(height: SizeConfig.blockHeight * 25),
+
                   GestureDetector(
                     onTap: () {
                       Navigator.pushNamedAndRemoveUntil(
