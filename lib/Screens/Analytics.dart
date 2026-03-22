@@ -2,23 +2,41 @@ import 'package:flutter/material.dart';
 
 import '../configs/size_config.dart';
 
-class AnalyticsScreen extends StatefulWidget {
-  const AnalyticsScreen({super.key});
+class Analytics extends StatefulWidget {
+  const Analytics({super.key});
 
   @override
-  State<AnalyticsScreen> createState() => _AnalyticsScreenState();
+  State<Analytics> createState() => _AnalyticsState();
 }
 
-class _AnalyticsScreenState extends State<AnalyticsScreen> {
+class _AnalyticsState extends State<Analytics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: SizeConfig.blockWidth * 100,
-        height: SizeConfig.blockHeight * 100,
-        color: Colors.white60,
-        child: Center(
-          child: ElevatedButton(onPressed: null, child: Text("Analysis")),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: SizeConfig.blockWidth * 5),
+              child: Row(
+                children: [
+                  IconButton(
+                      onPressed: () {}, icon: Icon(Icons.arrow_back_ios)),
+                  SizedBox(
+                    width: SizeConfig.blockWidth * 16,
+                  ),
+                  Text(
+                    "Analytics",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: SizeConfig.blockWidth * 5),
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
