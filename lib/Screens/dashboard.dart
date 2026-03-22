@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 
 import '../configs/size_config.dart';
-import '../data/model/transaction_model.dart';
-import '../widgets/transaction_cart_widget.dart';
-import '../widgets/transaction_items.dart';
+import '../Data/model/transaction_model.dart';
+import '../widgets/Transaction_cart_widget.dart';
+
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});

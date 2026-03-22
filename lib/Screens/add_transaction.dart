@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 
 import '../configs/size_config.dart';
-import '../data/model/transaction_model.dart';
+import '../Data/model/transaction_model.dart';
 
 class AddTransaction extends StatefulWidget {
   const AddTransaction({super.key});
