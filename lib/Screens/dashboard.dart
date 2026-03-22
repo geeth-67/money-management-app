@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-
 import '../configs/size_config.dart';
 import '../Data/model/transaction_model.dart';
 import '../widgets/Transaction_cart_widget.dart';
@@ -98,9 +96,9 @@ class _DashboardState extends State<Dashboard> {
                       icon: Icon(Icons.chevron_right)),
                 ],
               ),
-              Divider(
-                thickness: 1,
-              ),
+
+              Divider(thickness: 1),
+
               Column(
                 children: [
                   Container(
@@ -138,9 +136,9 @@ class _DashboardState extends State<Dashboard> {
                             ),
                           ],
                         ),
-                        SizedBox(
-                          height: SizeConfig.blockHeight * 0.1,
-                        ),
+
+                        SizedBox(height: SizeConfig.blockHeight * 0.1),
+
                         Text(
                           "\$3,550.00",
                           style: TextStyle(
@@ -148,7 +146,9 @@ class _DashboardState extends State<Dashboard> {
                               fontSize: SizeConfig.blockWidth * 8,
                               fontWeight: FontWeight.bold),
                         ),
+
                         Spacer(),
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -227,9 +227,9 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: SizeConfig.blockHeight * 2,
-                  ),
+
+                  SizedBox(height: SizeConfig.blockHeight * 2),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -268,6 +268,7 @@ class _DashboardState extends State<Dashboard> {
                       )
                     ],
                   ),
+                  
                   Container(
                     height: SizeConfig.blockHeight * 45,
                     margin: EdgeInsets.symmetric(
