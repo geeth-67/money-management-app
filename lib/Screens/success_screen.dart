@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../configs/size_config.dart';
 
 class SuccessScreen extends StatefulWidget {
   const SuccessScreen({super.key});
