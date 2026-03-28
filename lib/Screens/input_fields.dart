@@ -1,3 +1,4 @@
+import 'package:banking_app/Forms/radio_form_field.dart';
 import 'package:banking_app/screens/transactions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,12 +16,30 @@ class _AddTransactionState extends State<InputFields> {
 
   String submission = 'No errors';
   bool showPassword = false;
+  String gender = 'M';
+  bool teamsAndConditions = true;
+  bool active = true;
+
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final passwordController = TextEditingController();
   final amountController = TextEditingController();
+  final dateController = TextEditingController();
+
 
   final _formKey = GlobalKey<FormState>();
+
+  Future<void>_pickDate(BuildContext context) async {
+    DateTime? date = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2100)
+    );
+    if (date != null) {
+      dateController.text = date.toString();
+    };
+  }
 
   @override
   void initState() {
@@ -184,6 +203,109 @@ class _AddTransactionState extends State<InputFields> {
                       )),
 
                   SizedBox(height: 10,),
+
+                  TextFormField(
+                    controller: dateController,
+                    readOnly: true,
+                    onTap: () => _pickDate(context),
+                    decoration: InputDecoration(
+                      label: Text.rich(
+                        TextSpan(
+                          text: "Date *",
+                          style: TextStyle(color: Colors.red)
+                        )
+                      ),
+                      hintText: "please select a transaction date",
+                      border: UnderlineInputBorder(),
+                      prefixIcon: Icon(Icons.calendar_month),
+                    ),
+                    validator: (value){
+                      if (value == null || value.isEmpty) {
+                        return "Date is required";
+                      }
+                      return null;
+                    },
+                  ),
+
+                  SizedBox(height: SizeConfig.blockHeight * 3,),
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Gender"),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: RadioListTile(
+                              title: Text("Male"),
+                              value: "M",
+                              groupValue: gender,
+                              onChanged: (value) {
+                                setState(() {
+                                  gender = value.toString();
+                                });
+                              },
+                            ),
+                          ),
+
+                          Expanded(
+                            child: RadioListTile(
+                              title: Text("Female"),
+                              value: "F",
+                              groupValue: gender,
+                              onChanged: (value) {
+                                setState(() {
+                                  gender = value.toString();
+                                });
+                              },
+                            ),
+                          ),
+
+                        ],
+                      ),
+                    ],
+                  ),
+
+                  Text("selected gender is $gender"),
+
+                  RadioFormField(
+                    title: "Gender",
+                    options: ["Male", "Female"],
+                    onChanged: (value) {
+                      setState(() {
+                        gender = value!;
+                      });
+                    },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Gender is required";
+                        }
+                        return null;
+                      }
+                  ),
+
+                  SizedBox(height: SizeConfig.blockHeight * 3,),
+
+                  CheckboxListTile(
+                    title: Text("Accept Terms and conditions"),
+                      value: teamsAndConditions,
+                      onChanged: (value) {
+                        setState(() {
+                          teamsAndConditions = ! teamsAndConditions;
+                        });
+                      }),
+                  Text("Select terms $teamsAndConditions"),
+                  
+                  SizedBox(height: SizeConfig.blockHeight * 3,),
+                  
+                  SwitchListTile(
+                    title: Text("User active"),
+                      value: active,
+                      onChanged: (value) {
+                        setState(() {
+                          active = ! active;
+                        });
+                      }),
 
                   ElevatedButton(
                       onPressed: () {
