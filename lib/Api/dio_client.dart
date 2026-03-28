@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 
 class DioClient {
-  static final DioClient _instance = DioClient();
+  static final DioClient _instance = DioClient._internal();
   late Dio dio;
 
   factory DioClient(){
@@ -12,7 +12,7 @@ class DioClient {
   DioClient._internal(){
     dio = Dio(
       BaseOptions(
-        baseUrl: "",
+        baseUrl: "https://dummyjson.com/",
         connectTimeout: const Duration(seconds: 60),
         receiveTimeout: const Duration(seconds: 60),
         headers: {
@@ -40,8 +40,8 @@ class DioClient {
         }
       )
     );
+    }
     Future<Response> get (String url, {Map<String, dynamic>? queryParams}) async {
       return await dio.get(url, queryParameters: queryParams);
-    }
   }
 }
