@@ -1,8 +1,8 @@
+import 'package:banking_app/Services/dashboard_service.dart';
 import 'package:flutter/material.dart';
 import '../configs/size_config.dart';
 import '../Data/model/transaction_model.dart';
 import '../widgets/Transaction_cart_widget.dart';
-
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -12,50 +12,90 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  final DashboardService _dashboardService = DashboardService();
+
+  List posts = [];
+  bool loading = true;
+  String? errorMessage;
+
+  final List<TransactionModel> transactions = [
+    TransactionModel(
+      iconName: 'cart',
+      title: 'Grocery',
+      date: DateTime(2026, 02, 22),
+      amount: 45.33,
+      isExpense: true,
+    ),
+    TransactionModel(
+      iconName: 'cart',
+      title: 'Salary',
+      date: DateTime(2026, 02, 22),
+      amount: 2000.00,
+      isExpense: false,
+    ),
+    TransactionModel(
+      iconName: 'cart',
+      title: 'Uber',
+      date: DateTime(2026, 02, 22),
+      amount: 35.00,
+      isExpense: true,
+    ),
+    TransactionModel(
+      iconName: 'cart',
+      title: 'Online Store',
+      date: DateTime(2026, 02, 22),
+      amount: 150.00,
+      isExpense: true,
+    ),
+    TransactionModel(
+      iconName: 'cart',
+      title: 'Bank Transfer',
+      date: DateTime(2026, 02, 22),
+      amount: 150.00,
+      isExpense: true,
+    ),
+    TransactionModel(
+      iconName: 'cart',
+      title: 'Bank Transfer',
+      date: DateTime(2026, 02, 22),
+      amount: 150.00,
+      isExpense: true,
+    ),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    loadPosts();
+  }
+
+  Future<void> loadPosts() async {
+    setState(() {
+      loading = true;
+      errorMessage = null;
+    });
+
+    try {
+      final data = await _dashboardService.getSummaryTransaction();
+      print(data);
+
+      setState(() {
+        posts = data;
+        loading = false;
+      });
+    } catch (e) {
+      print("Error loading posts: $e");
+      setState(() {
+        loading = false;
+        errorMessage = "Failed to load data. Please try again.";
+      });
+    }
+  }
 
   Future<void> openTransactions(BuildContext context) async {
     final result = await Navigator.pushNamed(context, "/transactions");
     print(result);
   }
-
-  final List<TransactionModel> transactions = [
-    TransactionModel(
-        iconName: 'cart',
-        title: 'Grocery',
-        date: DateTime(2026, 02, 22),
-        amount: 45.33,
-        isExpense: true),
-    TransactionModel(
-        iconName: 'cart',
-        title: 'Salary',
-        date: DateTime(2026, 02, 22),
-        amount: 2000.00,
-        isExpense: false),
-    TransactionModel(
-        iconName: 'cart',
-        title: 'Uber',
-        date: DateTime(2026, 02, 22),
-        amount: 35.00,
-        isExpense: true),
-    TransactionModel(
-        iconName: 'cart',
-        title: 'Online Store',
-        date: DateTime(2026, 02, 22),
-        amount: 150.00,
-        isExpense: true),
-    TransactionModel(
-        iconName: 'cart',
-        title: 'Bank Transfer',
-        date: DateTime(2026, 02, 22),
-        amount: 150.00,
-        isExpense: true),
-    TransactionModel(
-        iconName: 'cart',
-        title: 'Bank Transfer',
-        date: DateTime(2026, 02, 22),
-        amount: 150.00,
-        isExpense: true)
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -67,54 +107,59 @@ class _DashboardState extends State<Dashboard> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(onPressed: () {}, icon: Icon(Icons.chevron_left)),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.chevron_left),
+                  ),
                   GestureDetector(
                     onTap: () {},
                     child: Container(
                       padding: EdgeInsets.symmetric(
-                          horizontal: SizeConfig.blockWidth * 15,
-                          vertical: SizeConfig.blockHeight * 1.5),
+                        horizontal: SizeConfig.blockWidth * 15,
+                        vertical: SizeConfig.blockHeight * 1.5,
+                      ),
                       decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(25)),
+                        color: Colors.grey[300],
+                        borderRadius: BorderRadius.circular(25),
+                      ),
                       child: Text(
                         "March 2025",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: SizeConfig.blockWidth * 3),
+                          fontWeight: FontWeight.bold,
+                          fontSize: SizeConfig.blockWidth * 3,
+                        ),
                       ),
                     ),
                   ),
                   IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/transaction-add');
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const AddTransaction()));
-                      },
-                      icon: Icon(Icons.chevron_right)),
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/transaction-add');
+                    },
+                    icon: const Icon(Icons.chevron_right),
+                  ),
                 ],
               ),
-
-              Divider(thickness: 1),
-
+              const Divider(thickness: 1),
               Column(
                 children: [
                   Container(
                     margin: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.blockWidth * 5,
-                        vertical: SizeConfig.blockHeight),
+                      horizontal: SizeConfig.blockWidth * 5,
+                      vertical: SizeConfig.blockHeight,
+                    ),
                     padding: EdgeInsets.symmetric(
-                        horizontal: SizeConfig.blockWidth * 5,
-                        vertical: SizeConfig.blockHeight * 3),
+                      horizontal: SizeConfig.blockWidth * 5,
+                      vertical: SizeConfig.blockHeight * 3,
+                    ),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        gradient: LinearGradient(
-                            colors: [Color(0xFF5C6FE4), Color(0xFFD67EB0)],
-                            begin: Alignment.bottomLeft,
-                            end: Alignment.topRight,
-                            stops: [0.3, 0.7])),
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: const LinearGradient(
+                        colors: [Color(0xFF5C6FE4), Color(0xFFD67EB0)],
+                        begin: Alignment.bottomLeft,
+                        end: Alignment.topRight,
+                        stops: [0.3, 0.7],
+                      ),
+                    ),
                     height: SizeConfig.blockHeight * 25,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,30 +170,28 @@ class _DashboardState extends State<Dashboard> {
                             Text(
                               "Total Balance",
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: SizeConfig.blockWidth * 5,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.white,
+                                fontSize: SizeConfig.blockWidth * 5,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             IconButton(
                               onPressed: () {},
-                              icon: Icon(Icons.more_horiz),
+                              icon: const Icon(Icons.more_horiz),
                               color: Colors.white,
                             ),
                           ],
                         ),
-
                         SizedBox(height: SizeConfig.blockHeight * 0.1),
-
                         Text(
                           "\$3,550.00",
                           style: TextStyle(
-                              color: Colors.white,
-                              fontSize: SizeConfig.blockWidth * 8,
-                              fontWeight: FontWeight.bold),
+                            color: Colors.white,
+                            fontSize: SizeConfig.blockWidth * 8,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-
-                        Spacer(),
-
+                        const Spacer(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -157,7 +200,7 @@ class _DashboardState extends State<Dashboard> {
                               children: [
                                 Row(
                                   children: [
-                                    CircleAvatar(
+                                    const CircleAvatar(
                                       radius: 10,
                                       backgroundColor: Colors.green,
                                       child: Icon(
@@ -172,27 +215,28 @@ class _DashboardState extends State<Dashboard> {
                                     Text(
                                       "Income",
                                       style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: SizeConfig.blockWidth * 4,
-                                          fontWeight: FontWeight.bold),
+                                        color: Colors.white,
+                                        fontSize: SizeConfig.blockWidth * 4,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ],
                                 ),
                                 Text(
                                   "\$2,500",
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: SizeConfig.blockWidth * 6,
-                                      fontWeight: FontWeight.bold),
-                                )
+                                    color: Colors.white,
+                                    fontSize: SizeConfig.blockWidth * 6,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ],
                             ),
                             Column(
-                              // crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   children: [
-                                    CircleAvatar(
+                                    const CircleAvatar(
                                       radius: 10,
                                       backgroundColor: Colors.red,
                                       child: Icon(
@@ -207,106 +251,110 @@ class _DashboardState extends State<Dashboard> {
                                     Text(
                                       "Expense",
                                       style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: SizeConfig.blockWidth * 4,
-                                          fontWeight: FontWeight.bold),
+                                        color: Colors.white,
+                                        fontSize: SizeConfig.blockWidth * 4,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ],
                                 ),
                                 Text(
                                   "\$950",
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: SizeConfig.blockWidth * 6,
-                                      fontWeight: FontWeight.bold),
-                                )
+                                    color: Colors.white,
+                                    fontSize: SizeConfig.blockWidth * 6,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ],
-                            )
+                            ),
                           ],
-                        )
+                        ),
                       ],
                     ),
                   ),
-
                   SizedBox(height: SizeConfig.blockHeight * 2),
-
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                horizontal: SizeConfig.blockWidth * 5,
-                                vertical: SizeConfig.blockHeight),
-                            child: Text(
-                              "Recent Transactions",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: SizeConfig.blockWidth * 6,
-                                  fontWeight: FontWeight.bold),
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: SizeConfig.blockWidth * 5,
+                          vertical: SizeConfig.blockHeight,
+                        ),
+                        child: Text(
+                          "Recent Transactions",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: SizeConfig.blockWidth * 6,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          right: SizeConfig.blockWidth * 5,
+                        ),
+                        child: TextButton(
+                          onPressed: () => openTransactions(context),
+                          child: Text(
+                            "See All",
+                            style: TextStyle(
+                              fontSize: SizeConfig.blockWidth * 5,
                             ),
                           ),
-                        ],
+                        ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin:
-                                EdgeInsets.only(right: SizeConfig.blockWidth * 5),
-                            child: TextButton(
-                                onPressed: () => openTransactions(context),
-                                child: Text(
-                                  "See All",
-                                  style: TextStyle(
-                                      fontSize: SizeConfig.blockWidth * 5),
-                                )),
-                          )
-                        ],
-                      )
                     ],
                   ),
-                  
-                  Container(
-                    height: SizeConfig.blockHeight * 45,
-                    margin: EdgeInsets.symmetric(
+                  if (loading)
+                    const Padding(
+                      padding: EdgeInsets.all(20),
+                      child: CircularProgressIndicator(),
+                    )
+                  else if (errorMessage != null)
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Text(
+                        errorMessage!,
+                        style: const TextStyle(color: Colors.red, fontSize: 16),
+                      ),
+                    )
+                  else
+                    Container(
+                      height: SizeConfig.blockHeight * 45,
+                      margin: EdgeInsets.symmetric(
                         horizontal: SizeConfig.blockWidth * 4,
-                        vertical: SizeConfig.blockHeight),
-                    decoration: BoxDecoration(
+                        vertical: SizeConfig.blockHeight,
+                      ),
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        color: Color(0xFFEBEDF0)),
-                    child: Expanded(
+                        color: const Color(0xFFEBEDF0),
+                      ),
                       child: ListView.separated(
                         itemCount: transactions.length,
                         itemBuilder: (context, index) {
                           return TransactionWidget(
-                              transaction: transactions[index]);
+                            transaction: transactions[index],
+                          );
                         },
                         separatorBuilder: (context, index) {
-                          return Divider(
-                            thickness: 1.2,
-                          );
+                          return const Divider(thickness: 1.2);
                         },
                       ),
                     ),
-                  )
                 ],
-              )
+              ),
             ],
           ),
         ),
       ),
-
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, '/transaction-add');
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: (context) => AddTransaction()));
         },
         backgroundColor: Colors.deepPurple,
-        child: Icon(
+        child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
