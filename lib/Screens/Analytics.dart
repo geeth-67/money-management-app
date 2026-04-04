@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../configs/size_config.dart';
 
+import '../configs/size_config.dart';
 
 class Analytics extends StatefulWidget {
   const Analytics({super.key});
