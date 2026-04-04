@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class FilterBarWidget extends StatelessWidget {
   const FilterBarWidget({super.key});
 

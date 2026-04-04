@@ -1,9 +1,9 @@
 import 'package:banking_app/screens/profile_screen.dart';
 import 'package:banking_app/screens/transactions_screen.dart';
 import 'package:flutter/material.dart';
+
 import 'analytics.dart';
 import 'dashboard.dart';
-import 'input_fields.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -14,14 +14,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
     Dashboard(),
     Transactions(),
     Analytics(),
-    InputFields()
+    ProfileScreen()
   ];
 
   void _onSelectPage(int index) {

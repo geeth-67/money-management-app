@@ -1,22 +1,23 @@
-import 'package:banking_app/Api/dio_client.dart';
 import 'package:dio/dio.dart';
 
+import '../core/network/dio_client.dart';
+import '../data/model/transaction_model.dart';
 
 class DashboardService {
   final DioClient _dioClient = DioClient();
 
-  Future<List<dynamic>> getSummaryTransaction() async {
+  Future<List<TransactionModel>> getSummaryTransactions() async {
     try {
-      Response response = await _dioClient.get("products");
-      
-      if (response.statusCode == 200) {
-        return response.data["products"] ?? [];
-      } else {
-        throw Exception("Failed to load transactions. Status code: ${response.statusCode}");
-      }
+      Response response = await _dioClient.get("transactions");
+      // print(response.data);
+      // List data = response.data['products'];
+      List data = response.data;
+      // return response.data.map((e) => TransactionModel.fromJson(e)).toList();
+      return data
+          .map((e) => TransactionModel.fromJson(e))
+          .toList();
     } catch (e) {
-      print("API Error: $e");
-      throw Exception("Error fetching data");
+      return [];
     }
   }
 }

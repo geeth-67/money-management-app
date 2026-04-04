@@ -1,8 +1,9 @@
-import 'package:banking_app/Forms/radio_form_field.dart';
 import 'package:banking_app/screens/transactions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import '../configs/size_config.dart';
+import '../forms/radio_form_field.dart';
 
 
 class InputFields extends StatefulWidget {
@@ -13,33 +14,31 @@ class InputFields extends StatefulWidget {
 }
 
 class _AddTransactionState extends State<InputFields> {
-
   String submission = 'No errors';
   bool showPassword = false;
-  String gender = 'M';
-  bool teamsAndConditions = true;
-  bool active = true;
-
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
   final passwordController = TextEditingController();
   final amountController = TextEditingController();
   final dateController = TextEditingController();
 
+  String gender = "M";
+  bool termsAndConditions = false;
+  bool active = true;
 
-  final _formKey = GlobalKey<FormState>();
-
-  Future<void>_pickDate(BuildContext context) async {
+  Future<void> _pickDate(BuildContext context) async {
     DateTime? date = await showDatePicker(
         context: context,
         initialDate: DateTime.now(),
-        firstDate: DateTime(2000),
-        lastDate: DateTime(2100)
-    );
+        firstDate: DateTime(1950),
+        lastDate: DateTime(2100));
+
     if (date != null) {
       dateController.text = date.toString();
-    };
+    }
   }
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -87,12 +86,10 @@ class _AddTransactionState extends State<InputFields> {
                 ],
               ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-
                   Form(
                       key: _formKey,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -101,24 +98,21 @@ class _AddTransactionState extends State<InputFields> {
                           TextFormField(
                             controller: firstNameController,
                             decoration: InputDecoration(
-                              label: Text.rich(
-                                TextSpan(
+                              label: Text.rich(TextSpan(
                                   text: "First Name",
                                   children: [
                                     TextSpan(
-                                      text: " * ",
-                                      style: TextStyle(color: Colors.red)
-                                      
-                                    )
-                                  ]
-                                )
-                              ),
+                                        text: " * ",
+                                        style: TextStyle(color: Colors.red))
+                                  ])),
                               // labelText: 'First Name',
                               hintText: 'Please enter your name',
                               border: UnderlineInputBorder(),
                               prefixIcon: Icon(Icons.person),
                             ),
-                            inputFormatters: [LengthLimitingTextInputFormatter(10)], //max length
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(10)
+                            ], //max length
                             keyboardType: TextInputType.text,
                             maxLength: 10,
                             validator: (value) {
@@ -128,7 +122,6 @@ class _AddTransactionState extends State<InputFields> {
                               return null;
                             },
                           ),
-
                           TextFormField(
                             controller: lastNameController,
                             decoration: InputDecoration(
@@ -139,7 +132,6 @@ class _AddTransactionState extends State<InputFields> {
                             ),
                             keyboardType: TextInputType.text,
                           ),
-
                           TextFormField(
                             // maxLines: 5,
                             controller: passwordController,
@@ -163,22 +155,16 @@ class _AddTransactionState extends State<InputFields> {
                             //   })
                             // },
                           ),
-
                           TextFormField(
                             controller: amountController,
                             decoration: InputDecoration(
-                              label: Text.rich(
-                                  TextSpan(
-                                      text: "Amount",
-                                      children: [
-                                        TextSpan(
-                                            text: " * ",
-                                            style: TextStyle(color: Colors.red)
-
-                                        )
-                                      ]
-                                  )
-                              ),
+                              label: Text.rich(TextSpan(
+                                  text: "Amount",
+                                  children: [
+                                    TextSpan(
+                                        text: " * ",
+                                        style: TextStyle(color: Colors.red))
+                                  ])),
                               // labelText: 'First Name',
                               hintText: 'Please enter your amount',
                               border: UnderlineInputBorder(),
@@ -187,9 +173,7 @@ class _AddTransactionState extends State<InputFields> {
                             inputFormatters: [
                               // FilteringTextInputFormatter.digitsOnly,
                               FilteringTextInputFormatter.allow(
-                                RegExp(r'^\d+\.?\d{0,2}')
-                              )
-                              
+                                  RegExp(r'^\d+\.?\d{0,2}'))
                             ],
                             keyboardType: TextInputType.number,
                             validator: (value) {
@@ -199,125 +183,105 @@ class _AddTransactionState extends State<InputFields> {
                               return null;
                             },
                           ),
+                          TextFormField(
+                            controller: dateController,
+                            readOnly: true,
+                            onTap: () => _pickDate(context),
+                            decoration: InputDecoration(
+                              label: Text.rich(TextSpan(
+                                text: "Date",
+                              )),
+                              hintText: 'Please enter transaction date',
+                              border: UnderlineInputBorder(),
+                              prefixIcon: Icon(Icons.calendar_month),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "First name is required";
+                              }
+                              return null;
+                            },
+                          ),
+                          RadioFormField(
+                              title: "Gender",
+                              options: ["Male", "Female"],
+                          onSaved: (value) {
+                                setState(() {
+                                  gender = value.toString();
+                                });
+                          },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Gender is required";
+                              }
+                              return null;
+                            },),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Gender"),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: RadioListTile(
+                                      title: Text("Male"),
+                                      value: "M",
+                                      groupValue: gender,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          gender = value.toString();
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: RadioListTile(
+                                      title: Text("Female"),
+                                      value: "F",
+                                      groupValue: gender,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          gender = value.toString();
+                                        });
+                                      },
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text("Selected gender is $gender")
+                            ],
+                          ),
+                          CheckboxListTile(
+                              title: Text("Accept Terms and Conditions"),
+                              value: termsAndConditions,
+                              onChanged: (value) {
+                                setState(() {
+                                  termsAndConditions = !termsAndConditions;
+                                });
+                              }),
+                          Text("Selected terms $termsAndConditions"),
+                          SwitchListTile(
+                              title: Text("User active"),
+                              value: active,
+                              onChanged: (value) {
+                                setState(() {
+                                  active = !active;
+                                });
+                              })
                         ],
                       )),
-
-                  SizedBox(height: 10,),
-
-                  TextFormField(
-                    controller: dateController,
-                    readOnly: true,
-                    onTap: () => _pickDate(context),
-                    decoration: InputDecoration(
-                      label: Text.rich(
-                        TextSpan(
-                          text: "Date *",
-                          style: TextStyle(color: Colors.red)
-                        )
-                      ),
-                      hintText: "please select a transaction date",
-                      border: UnderlineInputBorder(),
-                      prefixIcon: Icon(Icons.calendar_month),
-                    ),
-                    validator: (value){
-                      if (value == null || value.isEmpty) {
-                        return "Date is required";
-                      }
-                      return null;
-                    },
+                  SizedBox(
+                    height: 10,
                   ),
-
-                  SizedBox(height: SizeConfig.blockHeight * 3,),
-
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Gender"),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: RadioListTile(
-                              title: Text("Male"),
-                              value: "M",
-                              groupValue: gender,
-                              onChanged: (value) {
-                                setState(() {
-                                  gender = value.toString();
-                                });
-                              },
-                            ),
-                          ),
-
-                          Expanded(
-                            child: RadioListTile(
-                              title: Text("Female"),
-                              value: "F",
-                              groupValue: gender,
-                              onChanged: (value) {
-                                setState(() {
-                                  gender = value.toString();
-                                });
-                              },
-                            ),
-                          ),
-
-                        ],
-                      ),
-                    ],
-                  ),
-
-                  Text("selected gender is $gender"),
-
-                  RadioFormField(
-                    title: "Gender",
-                    options: ["Male", "Female"],
-                    onChanged: (value) {
-                      setState(() {
-                        gender = value!;
-                      });
-                    },
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "Gender is required";
-                        }
-                        return null;
-                      }
-                  ),
-
-                  SizedBox(height: SizeConfig.blockHeight * 3,),
-
-                  CheckboxListTile(
-                    title: Text("Accept Terms and conditions"),
-                      value: teamsAndConditions,
-                      onChanged: (value) {
-                        setState(() {
-                          teamsAndConditions = ! teamsAndConditions;
-                        });
-                      }),
-                  Text("Select terms $teamsAndConditions"),
-                  
-                  SizedBox(height: SizeConfig.blockHeight * 3,),
-                  
-                  SwitchListTile(
-                    title: Text("User active"),
-                      value: active,
-                      onChanged: (value) {
-                        setState(() {
-                          active = ! active;
-                        });
-                      }),
-
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           print("Successful");
                           submission = "validated";
-                        }else{
+                        } else {
                           submission = "error";
                         }
-                        setState(() {
-
-                        });
+                        setState(() {});
                       },
                       child: Text("Submit")),
                   Text(submission)
@@ -336,6 +300,7 @@ class _AddTransactionState extends State<InputFields> {
     lastNameController.dispose();
     passwordController.dispose();
     amountController.dispose();
+    dateController.dispose();
 
     super.dispose();
   }

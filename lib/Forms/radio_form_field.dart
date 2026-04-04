@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 class RadioFormField extends FormField<String> {
   RadioFormField({
+    super.key,
     required String title,
     required List<String> options,
-    required Function(String?) onChanged,
     FormFieldSetter<String>? onSaved,
     FormFieldValidator<String>? validator,
   }) : super(
-    onSaved: onSaved,
     validator: validator,
+    onSaved: onSaved,
     builder: (FormFieldState<String> state) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -17,21 +17,22 @@ class RadioFormField extends FormField<String> {
           Text(title),
           Row(
             children: options.map((e) {
-              return Expanded(child: RadioListTile(
-                title: Text(e),
-                value: e,
-                groupValue: state.value,
-                onChanged: (value) {
-                  state.didChange(value);
-                },
-              )
+              return Expanded(
+                child: RadioListTile<String>(
+                  title: Text(e),
+                  value: e,
+                  groupValue: state.value,
+                  onChanged: (value) {
+                    state.didChange(value);
+                  },
+                ),
               );
             }).toList(),
           ),
           if (state.hasError)
             Text(
               state.errorText!,
-              style: TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.red),
             ),
         ],
       );
