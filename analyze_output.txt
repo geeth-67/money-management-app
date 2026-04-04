@@ -1,0 +1,45 @@
+Resolving dependencies...
+Downloading packages...
+  async 2.13.0 (2.13.1 available)
+  characters 1.4.0 (1.4.1 available)
+  cupertino_icons 1.0.8 (1.0.9 available)
+  flutter_lints 5.0.0 (6.0.0 available)
+  lints 5.1.1 (6.1.0 available)
+  matcher 0.12.17 (0.12.19 available)
+  material_color_utilities 0.11.1 (0.13.0 available)
+  meta 1.16.0 (1.18.2 available)
+  test_api 0.7.6 (0.7.11 available)
+  vector_math 2.2.0 (2.3.0 available)
+Got dependencies!
+10 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+Analyzing money-manage-app...                                   
+
+   info • Don't invoke 'print' in production code • lib/Api/dio_client.dart:30:11 • avoid_print
+   info • Don't invoke 'print' in production code • lib/Api/dio_client.dart:34:11 • avoid_print
+   info • Don't invoke 'print' in production code • lib/Api/dio_client.dart:38:11 • avoid_print
+   info • Don't invoke 'print' in production code • lib/core/network/dio_client.dart:31:15 • avoid_print
+   info • Don't invoke 'print' in production code • lib/core/network/dio_client.dart:35:15 • avoid_print
+   info • Don't invoke 'print' in production code • lib/core/network/dio_client.dart:39:15 • avoid_print
+   info • Constructors for public widgets should have a named 'key' parameter • lib/forms/radio_form_field.dart:4:3 • use_key_in_widget_constructors
+   info • Parameters ''onSaved' and 'validator'' could be super parameters • lib/forms/radio_form_field.dart:4:3 • use_super_parameters
+   info • 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre • lib/forms/radio_form_field.dart:23:17 • deprecated_member_use
+   info • 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre • lib/forms/radio_form_field.dart:24:17 • deprecated_member_use
+   info • The file name 'add-transaction-demo.dart' isn't a lower_case_with_underscores identifier • lib/screens/add-transaction-demo.dart:1:1 • file_names
+   info • Don't invoke 'print' in production code • lib/screens/dashboard.dart:80:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/screens/dashboard.dart:87:7 • avoid_print
+   info • Don't invoke 'print' in production code • lib/screens/dashboard.dart:97:5 • avoid_print
+warning • Unused import: 'package:banking_app/screens/profile_screen.dart' • lib/screens/home_screen.dart:1:8 • unused_import
+   info • Unnecessary empty statement • lib/screens/input_fields.dart:41:6 • empty_statements
+   info • 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre • lib/screens/input_fields.dart:242:31 • deprecated_member_use
+   info • 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre • lib/screens/input_fields.dart:243:31 • deprecated_member_use
+   info • 'groupValue' is deprecated and shouldn't be used. Use a RadioGroup ancestor to manage group value instead. This feature was deprecated after v3.32.0-0.0.pre • lib/screens/input_fields.dart:255:31 • deprecated_member_use
+   info • 'onChanged' is deprecated and shouldn't be used. Use RadioGroup to handle value change instead. This feature was deprecated after v3.32.0-0.0.pre • lib/screens/input_fields.dart:256:31 • deprecated_member_use
+   info • Don't invoke 'print' in production code • lib/screens/input_fields.dart:313:27 • avoid_print
+warning • The value of the local variable 'size' isn't used • lib/screens/launch_screen.dart:19:11 • unused_local_variable
+   info • Don't invoke 'print' in production code • lib/services/dashboard_service.dart:18:7 • avoid_print
+warning • Duplicate import • lib/services/transactions_service.dart:3:8 • duplicate_import
+  error • The argument type 'Object' can't be assigned to the parameter type 'Color?'.  • lib/widgets/transaction_tile.dart:15:13 • argument_type_not_assignable
+  error • The argument type 'Object' can't be assigned to the parameter type 'IconData?'.  • lib/widgets/transaction_tile.dart:17:11 • argument_type_not_assignable
+  error • The argument type 'Object' can't be assigned to the parameter type 'Color?'.  • lib/widgets/transaction_tile.dart:31:18 • argument_type_not_assignable
+
